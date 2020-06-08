@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+        <record id="res_users_address_tree" model="ir.ui.view">
+            <field name="name">res.users.address.tree</field>
+            <field name="model">res.users.address</field>
+            <field name="arch" type="xml">
+                <tree string="Adresses">
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="street"/>
+                    <field name="zip"/>
+                    <field name="city"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="res_users_address_form" model="ir.ui.view">
+            <field name="name">res.users.address.form</field>
+            <field name="model">res.users.address</field>
+            <field name="arch" type="xml">
+                <form string="Adresses">
+                    <div class="oe_title">
+                        <label class="oe_edit_only" for="name" string="Nom"/>
+                        <h1><field name="name" placeholder="Nom"/></h1>
+                    </div>
+                    <group col="4">
+                        <label for="street" string="Adresse"/>
+                        <div class="o_address_format">
+                            <field name="street" placeholder="Street..." class="o_address_street"/>
+                            <field name="street_2" placeholder="Street 2..." class="o_address_street"/>
+                            <field name="city" placeholder="City" class="o_address_city"/>
+                            <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                            <field name="country_id" placeholder="Country" class="o_address_country" />
+                        </div>
+                        <field name="description" placeholder="Note pour l'adresse"/>
+                        <field name="phone" placeholder="Téléphone" widget="phone"/>
+                        <field name="email" placeholder="Adresse e-mail"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="res_users_address_action" model="ir.actions.act_window">
+            <field name="name">Adresses</field>
+            <field name="res_model">res.users.address</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="den_ran.res_users_address_tree"/>
+        </record>
+
+        <menuitem id="den_ran_address_menu" action="den_ran.res_users_address_action" parent="base.menu_users" name="Adresses" sequence="11"/>
+</odoo>

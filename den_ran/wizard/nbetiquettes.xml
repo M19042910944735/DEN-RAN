@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+    <record id="wizard_nb_etiquettes_form" model="ir.ui.view">
+        <field name="name">wizard.nb_etiquettes.form</field>
+        <field name="model">wizard.nb_etiquettes</field>
+        <field name="arch" type="xml">
+
+          <form>
+        		<group>
+            		<p>Veuillez saisir le nombre d'étiquettes à imprimer pour chaque article</p>
+                    <field name="produit" required="1" invisible="1"/>
+    			    <field name="nbetiq" />
+        		</group>
+    				<footer>
+                        <button name="imprimer_etiquettes" type="object" string="Lancer l'impression" class="oe_highlight pull-right" />
+    					<button special="cancel" string="Annuler"/>
+            </footer>
+    			</form>
+    		</field>
+    </record>
+
+    <act_window id="launch_nb_etiquettes_wizard" name="Etiquettes Articles 8*3" src_model="product.template" res_model="wizard.nb_etiquettes" view_mode="form" target="new" key2="client_action_multi" />
+
+    </data>
+</openerp>

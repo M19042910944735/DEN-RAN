@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_delivery_document_custom" inherit_id="stock.report_delivery_document">
+        <xpath expr="//div[hasclass('page')]/h2" position = "replace" > 
+            <h2>
+                <span>Bon de livraison </span>
+                <span t-field="o.name"/>
+            </h2>
+        </xpath>         
+    </template>
+</odoo>

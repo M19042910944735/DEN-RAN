@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="external_layout_background_custom" inherit_id="web.external_layout_background">
+        <xpath expr="//span[@t-field='company.partner_id']" position="replace">
+            <t t-set="current_user" t-value="request.env['res.users'].browse(request.env.uid)"></t>
+            <div>
+                <p class="pt0 pb0 mt0 mb0" style="font-size:12px" t-if="current_user.adresse_id">
+                    <small>
+                        <span t-if="current_user.adresse_id.street">
+                            <span t-esc="current_user.adresse_id.street"/>
+                            <br/>
+                        </span>
+                        <span t-if="current_user.adresse_id.street_2">
+                            <span t-esc="current_user.adresse_id.street_2"/>
+                            <br/>
+                        </span>
+                        <span t-if="current_user.adresse_id.zip and current_user.adresse_id.city">
+                            <span t-esc="current_user.adresse_id.zip"/>
+                            <span t-esc="current_user.adresse_id.city"/>
+                            <br/>
+                        </span>
+                        <span t-if="current_user.adresse_id.country_id.name" t-esc="current_user.adresse_id.country_id.name"/><br/>
+                        <span t-if="current_user.adresse_id.phone">
+                            <span t-esc="current_user.adresse_id.phone"/>
+                            <br/>
+                        </span>
+                        <span t-if="current_user.adresse_id.email">
+                            <span t-esc="current_user.adresse_id.email"/>
+                        </span>
+                    </small>
+                </p>
+            </div>
+        </xpath>
+        <xpath expr="//ul[hasclass('list-inline')]" position="before">
+            <p class="text-left" style="font-size:10px">
+                <span t-if="len(company.partner_id.bank_ids)>0 and company.partner_id.bank_ids[0].acc_number"><strong>Coordonnées bancaires:</strong></span><br/>
+                <span t-if="len(company.partner_id.bank_ids)>0 and company.partner_id.bank_ids[0].acc_number">IBAN : <span t-esc="company.partner_id.bank_ids[0].acc_number"/></span><br/>
+                <span t-if="len(company.partner_id.bank_ids)>0 and company.partner_id.bank_ids[0].bank_id.bic">BIC : <span t-esc="company.partner_id.bank_ids[0].bank_id.bic"/></span>
+            </p>
+            <small style="font-size:8px">
+                Pas d'escompte pour paiement anticipé. Passée la date d'échéance, tout retard de paiement entraîne l'application d'une pénalité de 1.5 fois le taux d'intérêt légal (loi 92-1442 du 31/12/1992)
+                Tout professionnel en situation de retard de paiement est débiteur d'une indemnité forfaitaire de 40€ pour frais de recouvrement (loi n° 2012-387 du 22 mars 2012)
+            </small>
+            <p style="font-size:10px">
+                Réserve de propriété des matériels et fournitures jusqu'à paiement complet du prix par l'acheteur (lois n° 80.335 du 12/05/1980 et n° 85-98 du 25/01/1985)
+            </p>
+        </xpath>
+        <xpath expr="//ul[hasclass('list-inline')]" position="replace">
+            <ul class="list-inline">
+                <li class="text-center" style="font-size: 12px;"> 
+                    <span t-field="company.footer_note"/>
+                </li>
+            </ul>
+        </xpath>
+        <!--xpath expr="//ul[hasclass('list-inline')]" position="replace">
+            <t t-set="current_user" t-value="request.env['res.users'].browse(request.env.uid)"></t>
+            <ul class="list-inline">
+                <li t-if="current_user.adresse_id.phone" class="list-inline-item">
+                    <i class="fa fa-phone" role="img" aria-label="Phone" title="Phone"/> <span t-field="current_user.adresse_id.phone"/>
+                </li>
+                <li t-if="current_user.adresse_id.email" class="list-inline-item">
+                    <i class="fa fa-at" role="img" aria-label="Email" title="Email"/> <span t-field="current_user.adresse_id.email"/>
+                </li>
+                <li t-if="company.website" class="list-inline-item"><i class="fa fa-globe" role="img" aria-label="Website" title="Website"/> <span t-field="company.website"/></li>
+                <li t-if="company.vat" class="list-inline-item"><i class="fa fa-building-o" role="img" aria-label="Fiscal number"/><t t-esc="company.country_id.vat_label or 'Tax ID'"/>: <span t-field="company.vat"/></li>
+            </ul>
+        </xpath-->
+    </template>    
+</odoo>

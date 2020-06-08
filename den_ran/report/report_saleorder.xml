@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_saleorder_document_custom" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@id='informations']/div[last()]" position="replace">
+            <div t-if="doc.validity_date and doc.state in ['draft', 'sent']" class="mr32">
+                <strong>Expire le :</strong>
+                <p t-field="doc.validity_date" t-options="{'widget': 'date'}"/>
+            </div>
+        </xpath>
+        <xpath expr="//div[@id='informations']/div[3]" position="replace">
+            <div t-if="doc.date_order and doc.state in ['draft','sent']" class="mr32">
+                <strong>Date du devis :</strong>
+                <p t-field="doc.date_order" t-options="{'widget': 'date'}"/>
+            </div>
+        </xpath>
+        <xpath expr="//div[@t-if='doc.signature']" position="after">
+            <p class="text-center">
+                <strong>A retourner signé en bon pour accord avec acompte de 30% (chèque ou virement)</strong>
+            </p>
+        </xpath>
+        <xpath expr="//div[@id='informations']/div[2]" position="replace">
+            <div t-if="doc.confirmation_date and doc.state not in ['draft','sent']" class="mr32">
+                <strong>Date commande:</strong>
+                <p t-field="doc.confirmation_date" t-options="{'widget': 'date'}"/>
+            </div>
+        </xpath>
+        <xpath expr="//thead" position="replace">
+            <thead>
+                <tr>
+                    <t t-set="colspan" t-value="5"/>
+                    <th class="text-left">Description</th>
+                    <th class="text-right">Quantité</th>
+                    <th class="text-right">Prix unitaire</th>
+                    <th t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">
+                        <span>Rem.(%)</span>
+                        <t t-set="colspan" t-value="colspan+1"/>
+                    </th>
+                    <th class="text-right">
+                        <t groups="account.group_show_line_subtotals_tax_excluded">Montant</t>
+                        <t groups="account.group_show_line_subtotals_tax_included">Prix Total</t>
+                    </th>
+                </tr>
+        </thead>
+        </xpath>
+
+        <xpath expr="//t[@t-if='not line.display_type']/td[5]" position="replace">
+        </xpath>
+    </template>
+
+</odoo>

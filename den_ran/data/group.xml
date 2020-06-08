@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- <record id="bank_acc_0" model="res.partner.bank">
+            <field name="acc_number">FR76 1380 7109 5080 4211 2342 740</field>
+            <field name="partner_id">1</field>
+            <field name="bank_id">2</field>
+        </record>
+        <record id="bank_0" model="res.bank">
+            <field name="name">BANQUE POPULAIRE GRAND OUEST</field>
+            <field name="bic">CCBPFRPPNAN</field>
+        </record> -->
+
+    </data>
+</openerp>
