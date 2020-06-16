@@ -12,19 +12,27 @@
         />        
         <template id="report_productarticle_custom" inherit_id="product.report_productbarcode">
             <xpath expr="//div[hasclass('page')]" position="replace">
+                <t t-set="i" t-value="0"/>
                 <t t-foreach="docs or produit" t-as="product">
                     <t t-call="den_ran.report_simple_article_custom">
                         <t t-set="product" t-value="product"/>
+                        <t t-set="j" t-value="i"/>
+                    </t>
+                    <t t-if="i == 23">
+                        <t t-set="i" t-value="0"/>
+                    </t>
+                    <t t-else="">
+                        <t t-set="i" t-value="i+1"/>
                     </t>
                 </t>
             </xpath>
         </template>
-        <template id="report_simple_article_custom" inherit_id="product.report_simple_barcode">  
-            <xpath expr="//div" position="replace">                 
-                <div style="width: 32%; display: inline-table; height: 28 px; margin-right: 1%; margin-bottom: 1.5%; padding: 1;">
+        <template id="report_simple_article_custom" inherit_id="product.report_simple_barcode">
+            <xpath expr="//div" position="replace">
+                <div style="width: 32%; display: inline-table; height: 90 px; margin-right: 1%; margin-bottom: 1.5%; padding: 1;">
                     <table class="table table-bordered mb-0 " style="border: 1px solid black;">
                         <tr>
-                            <th class="text-center" style="height: 12px;">
+                            <th class="text-center" style="height: 40px;">
                                 <div class="text-center" style="font-size:5pt;">
                                     <span t-esc="product.default_code" />
                                 </div>
@@ -34,22 +42,22 @@
                             </th>
                         </tr>
                         <tr>
-                            <td class="text-center align-middle" style="height: 16px;">
+                            <td class="text-center align-middle" style="height: 50px;">
                                 <div class="text-center" style="font-size:9pt;">
                                     Prix HT   : <span t-field="product.lst_price" t-options="{'widget': 'monetary', 'display_currency': product.company_id.currency_id}"> </span>
-                                </div>  
+                                </div>
                                 <t t-set="prix_ttc" t-value="env['product.product'].calculer_prix_ttc(product)"/>
                                 <div class="text-center" style="font-size:9pt;">
                                     Prix TTC : <span t-esc="prix_ttc" t-options="{'widget': 'monetary', 'display_currency': product.company_id.currency_id}"> </span>
-                                </div>                   
+                                </div>
                             </td>
                         </tr>
                     </table>
                 </div>
-            </xpath>  
-        </template>        
+                <t t-if="j == 23">
+                    <p style="page-break-after: always;"/>
+                </t>
+            </xpath>
+        </template>
     </data>
 </odoo>
-
-
-
