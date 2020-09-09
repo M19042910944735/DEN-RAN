@@ -1,0 +1,10 @@
+*pyc
+*swp
+.idea*
+*pot
+*~
+*orig
+*#
+.dir-locals.el
+.projectile
+fabfile.py
