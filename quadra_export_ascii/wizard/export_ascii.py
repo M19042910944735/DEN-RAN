@@ -17,7 +17,7 @@ def compute_account_code(account_lines):
 
 
 def get_amount(account_lines):
-    return int((sum(account_lines.mapped('debit')) - sum(account_lines.mapped('credit'))) * 100)
+    return round((sum(account_lines.mapped('debit')) - sum(account_lines.mapped('credit'))) * 100)
 
 
 def compute_amount(account_lines):
