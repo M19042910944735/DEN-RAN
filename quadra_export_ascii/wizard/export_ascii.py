@@ -10,7 +10,11 @@ _logger = logging.getLogger(__name__)
 
 
 def compute_account_code(account_lines):
-    if account_lines[0].account_id.user_type_id.type in ['receivable', 'payable'] and account_lines[0].partner_id.ref:
+    if account_lines[0].account_id.user_type_id.type == 'receivable' and account_lines[0].partner_id.quadra_customer_ref:
+        return account_lines[0].partner_id.quadra_customer_ref
+    elif account_lines[0].account_id.user_type_id.type == 'payable' and account_lines[0].partner_id.quadra_supplier_ref:
+        return account_lines[0].partner_id.quadra_supplier_ref
+    elif account_lines[0].account_id.user_type_id.type in ['receivable', 'payable'] and account_lines[0].partner_id.ref:
         return account_lines[0].partner_id.ref
     else:
         return account_lines[0].account_id.code
@@ -85,7 +89,7 @@ class ExportASCII(models.TransientModel):
 
     def check_before_generate(self, move_lines):
         lines_without_aux_num = move_lines\
-            .filtered(lambda l: l.account_id.user_type_id.type in ['receivable', 'payable'] and not l.partner_id.ref)
+            .filtered(lambda l: l.account_id.user_type_id.type in ['receivable', 'payable'] and compute_account_code([l]) == l.account_id.code)
         if lines_without_aux_num:
             self.warning_msg = "<b>" + _("Missing Aux Num on Partners:") + "</b><br/>" + "<br/>"\
                 .join(lines_without_aux_num.mapped('partner_id.name')) + \

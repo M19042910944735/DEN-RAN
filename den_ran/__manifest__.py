@@ -16,7 +16,6 @@
     "data": [
         'security/ir.model.access.csv',
         'data/group.xml',
-        'views/view.xml',
         'views/res_users.xml',
         'views/res_users_address.xml',
         'report/report.xml',
