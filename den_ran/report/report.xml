@@ -32,17 +32,15 @@
             </div>
         </xpath>
         <xpath expr="//ul[hasclass('list-inline')]" position="before">
-            <p class="text-left" style="font-size:10px">
+            <p class="text-left last-page" style="font-size:10px">
                 <span t-if="len(company.partner_id.bank_ids)>0 and company.partner_id.bank_ids[0].acc_number"><strong>Coordonnées bancaires:</strong></span><br/>
                 <span t-if="len(company.partner_id.bank_ids)>0 and company.partner_id.bank_ids[0].acc_number">IBAN : <span t-esc="company.partner_id.bank_ids[0].acc_number"/></span><br/>
                 <span t-if="len(company.partner_id.bank_ids)>0 and company.partner_id.bank_ids[0].bank_id.bic">BIC : <span t-esc="company.partner_id.bank_ids[0].bank_id.bic"/></span>
             </p>
-            <small style="font-size:8px">
+            <p style="font-size: 10px;" class="last-page">
                 Pas d'escompte pour paiement anticipé. Passée la date d'échéance, tout retard de paiement entraîne l'application d'une pénalité de 1.5 fois le taux d'intérêt légal (loi 92-1442 du 31/12/1992)
                 Tout professionnel en situation de retard de paiement est débiteur d'une indemnité forfaitaire de 40€ pour frais de recouvrement (loi n° 2012-387 du 22 mars 2012)
-            </small>
-            <p style="font-size:10px">
-                Réserve de propriété des matériels et fournitures jusqu'à paiement complet du prix par l'acheteur (lois n° 80.335 du 12/05/1980 et n° 85-98 du 25/01/1985)
+                <br/>Réserve de propriété des matériels et fournitures jusqu'à paiement complet du prix par l'acheteur (lois n° 80.335 du 12/05/1980 et n° 85-98 du 25/01/1985)
             </p>
         </xpath>
         <xpath expr="//ul[hasclass('list-inline')]" position="replace">

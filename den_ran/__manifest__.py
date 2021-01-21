@@ -12,6 +12,10 @@
         'base',
         'account',
         'product',
+        'apik_piedpage',
+        'purchase',
+        'stock',
+        'report_qweb_element_page_visibility',
     ],
     "data": [
         'security/ir.model.access.csv',
