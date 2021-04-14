@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_picking_form" model="ir.ui.view">
+            <field name="name">stock.picking.form.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//sheet/group//field[@name='date_done']" position="after">
+                    <field name="qty_equal_qty_done" invisible="1"/>
+                    <field name="force_date_done" attrs="{'invisible': ['|', ('qty_equal_qty_done', '=', False), ('state', '=', 'done')], 'required': [('qty_equal_qty_done', '=', True)]}"/>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>
