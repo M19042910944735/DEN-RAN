@@ -13,6 +13,9 @@
     "data": [
         "wizard/stock_immediate_transfer_view.xml",
         "wizard/stock_backorder_confirmation_view.xml",
+        "wizard/stock_overprocessed_transfer_views.xml",
+
+        "views/stock_picking_views.xml",
     ],
     "application": False,
     "images": ["images/main_screenshot.png"],
