@@ -9,7 +9,7 @@
 
                 <xpath expr="//sheet/group//field[@name='date_done']" position="after">
                     <field name="qty_equal_qty_done" invisible="1"/>
-                    <field name="force_date_done" attrs="{'invisible': ['|', ('qty_equal_qty_done', '=', False), ('state', '=', 'done')], 'required': [('qty_equal_qty_done', '=', True)]}"/>
+                    <field name="force_date_done" attrs="{'invisible': ['|', ('qty_equal_qty_done', '=', False), ('state', '=', 'done')], 'required': [('qty_equal_qty_done', '=', True), ('state', 'not in', ['done'])]}"/>
                 </xpath>
 
             </field>
